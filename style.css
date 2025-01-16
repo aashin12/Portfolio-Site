@@ -1,0 +1,551 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    /* Ensures that the width and height of elements include padding and border (but not margin).*/
+    font-family:'Poppins',sans-serif;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+}
+
+:root{
+    --bgcolor:#1f242d;
+    --text-color:#fdfdfd;
+    --main-color:#754ef9;
+    --white-color:#fdfdfd;
+    --shadow-color:white;
+}
+
+html{
+    overflow-x:hidden;
+}
+
+body{
+    background:var(--bgcolor);
+    color: var(--text-color);
+}
+
+a{
+    color: #fff;
+    text-decoration: none;
+}
+.navbar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 25px 9%;/* This sets the top and bottom padding to 25 pixels. This sets the left and right padding to 9% of the width of the containing element. */
+    /* background-color:slateblue; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    visibility: hidden;
+    opacity: 0;
+    animation: show-content 1.5s linear forwards;
+    animation-delay: 1.2s;
+    background-color: #754ef9;
+    height: 80px;
+}
+
+@keyframes show-content{
+    100%{
+        visibility:visible;
+        opacity: 1;
+    }
+}
+.navbar .logo{
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
+.navbar ul{
+        display: flex;
+}
+.navbar ul li{
+    list-style: none;
+    margin-left: 35px;
+}
+.navbar ul li a{
+    font-size: 20px;
+    font-weight: 500;
+    transition: 0.5s ease;
+}
+
+.navbar ul li:hover a,
+.active a{ /*to make it always green for home page */ 
+    color: #7cf03d;
+
+}
+
+.home{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    height: 100vh;
+    padding: 60px 9% 0;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+    animation: show-content 1.5s linear forwards;
+    animation-delay: 1.6s;
+}
+
+.home-info h1{
+     font-size: 55px;
+}
+.home-info h2{
+    display: inline-block;
+    font-size: 32px;
+    margin-top: -10px;
+}
+.home-info h2 span{
+    position:relative;
+    display: inline-block;
+    color: transparent;
+    -webkit-text-stroke: .7px #7cf03d;
+    animation: display-text 16s linear infinite;
+    animation-delay: calc(-4s * var(--i));
+}
+
+@keyframes display-text{
+    25%,100%{
+        display: none;
+    }
+}
+
+.home-info h2 span::before{
+    content: attr(data-text);
+    position: absolute;
+    width: 0%;
+    border-right: 2px solid #7cf03d;
+    color: #7cf03d;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: fill-text 4s linear infinite;
+}
+
+@keyframes fill-text{
+    10%,100%{
+        width: 0;
+    }
+
+    70%,90%{
+        width: 100%;
+    }
+}
+
+.home-info p{
+    font-size: 16px;
+    margin: 10px 0 25px;
+}
+.home-info .btn-sci{
+    display: flex;
+    align-items: center;
+
+}
+
+.btn{
+    display: inline-block;
+    /* It’s common to style <a> tags as buttons. Using inline-block lets you control dimensions and padding.Appear side-by-side (inline).
+    Have a width, height, and proper spacing due to margin. */
+    padding: 10px 30px;
+    background:#7cf03d;
+    border: 2px solid #7cf03d;
+    border-radius: 40px;
+    box-shadow: 0 0 10px #7cf03d;
+    font-size: 16px;
+    color: #1f242d;
+    font-weight: 600;
+    transition: 0.5s ease;
+}
+
+.btn:hover{
+    background: transparent;
+    color: #7cf03d;
+    box-shadow: none;
+}
+
+.sci{
+    margin-left: 20px;
+}
+.sci a{
+    display: inline-flex;
+    /* display: inline-flex allows you to create a flex container that behaves like an inline element. It retains the flexibility of flexbox, enabling you to align and arrange child elements, while staying inline with other elements. */
+    padding: 8px;
+    border: 2px solid #7cf03d;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #7cf03d;
+    margin: 0 8px;
+    transition: 0.5s ease;
+}
+
+.sci a:hover{
+    background: #7cf03d;
+    color: #1f242d;
+    box-shadow: 0 0 10px #7cf03d;
+
+}
+.img-box{
+    position: relative;
+    width: 32vw;
+    height: 32vw;
+    border-radius: 50%;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.home-img .img-box::before,
+.home-img .img-box::after{
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    background: conic-gradient(transparent,transparent,transparent,#7cf03d);
+    transform: rotate(0deg);
+    animation: rotate-border 10s linear infinite;
+}
+
+.home-img .img-box::after{
+    animation-delay: -5s;
+}
+
+@keyframes rotate-border{
+    100%{
+        transform: rotate(360deg);
+    }
+}
+
+.home-img .img-box .img-item{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color:#1f242d;
+    border-radius: 50%;
+    border: .1px solid #1f242d;
+    display: flex;
+    justify-content: center;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.home-img .img-box .img-item img{
+    position: absolute;
+    top: 30px;
+    display: block;
+    mix-blend-mode:color-dodge;
+}
+
+.bars-animation{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: -1;
+}
+
+.bars-animation .bar{
+    width: 100%;
+    height: 100%;
+    background-color: #754ef9;
+    transform: translateY(-100%);
+    animation: show-bars .5s ease-in-out forwards;
+    animation-delay: calc(.1s * var(--i));
+}
+
+@keyframes show-bars{
+    100%{
+        transform: translateY(0%);
+    }
+}
+
+.about-content span{
+    color: var(--main-color);
+}
+
+.about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-img{
+    margin-left: 110px;
+    margin-top: 120px;
+    margin-bottom: 150px;
+    position: relative;
+    
+    
+}
+.about-img img{
+    border: 4px solid red;
+    box-shadow:0px 0px 15px red,
+    0px 0px 15px red inset;
+    border-radius: 25%;
+    mix-blend-mode:lighten;
+
+}
+
+.about-content{
+    margin-left: 90px;
+    margin-right: 10px;
+}
+.about-content p{
+    text-align: justify;
+
+}
+.about-content h2{
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+
+.services .services-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap :2rem;
+    margin-bottom: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.services-container .services-box{
+    flex: 1 1 30rem;
+   /* Behaviour of flex: 1 1 30rem;
+   The flex item will start with a base size of 30rem.
+   If there is extra space in the container, the item can grow to fill it proportionally with other items.
+   If there is less space in the container, the item can shrink proportionally with other items. */
+    background: var(--bgcolor);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    box-shadow: 0 .1rem .5rem var(--shadow-color);
+    text-align: center;
+    border-top: .6rem solid var(--main-color);
+    transition: .7s ease;
+}
+
+.services-container .services-box:hover{
+    box-shadow: 0 .1rem 2rem var(--shadow-color);
+    transform: scale(1.05);
+}
+
+.services h2{
+    margin-top: 50px;
+    padding-top: 80px;
+    padding-bottom: 20px;
+    margin-left: 500px;
+    font-size: 50px;
+}
+.services-box i{
+    font-size: 7rem;
+    color: var(--main-color);
+}
+
+.services span{
+    color: #754ef9;
+}
+
+.project{
+    padding-bottom: 100px;
+}
+
+.project-box img{
+    width: 600px;
+    height: 300px;
+}
+
+.project h2{
+    font-size: 50px;
+    margin-left: 500px;
+    margin-bottom: 10px;
+    padding-top: 90px;
+}
+.project p{
+    font-size: 10px;
+}
+
+.project-box{
+    background-color: #1f242d;
+    width: 600px;
+    height: 300px;
+     margin-left: 30px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    position: relative;
+    display: flex;
+    box-shadow: 0 0 1rem #754ef9;
+    overflow: hidden;
+    border: 2px solid #1f242d;
+    cursor: pointer;
+}
+
+.project-container{
+    display: grid;
+  grid-template-columns: repeat(2, 1fr);
+    
+
+}
+
+.flip-box {
+    background-color: transparent;
+    width: 600px;
+    height: 300px;
+    border: 1px solid #f1f1f1;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  }
+  
+  /* This container is needed to position the front and back side */
+  .flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  
+  /* Do an horizontal flip when you move the mouse over the flip box container */
+  .flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Position the front and back side */
+  .flip-box-front, .flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+  }
+  
+  /* Style the front side (fallback if image is missing) */
+  .flip-box-front {
+    background-color: #bbb;
+    color: black;
+  }
+  
+  /* Style the back side */
+  .flip-box-back {
+    background-color: dodgerblue;
+    color: white;
+    height: 300px;
+    transform: rotateY(180deg);
+  }
+
+  .flip-box-back h2{
+    font-size: 50px;
+    margin-left: 20px;
+    margin-top: -50px;
+    color:#64ffda;
+}
+
+.flip-box-back p{
+    font-size: 20px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    font-family: inherit;
+    gap: 10px;
+    padding-inline: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    background-color: #0a192f;
+    border-radius: 20px;
+  }
+  
+  .form-heading {
+    text-align: center;
+    margin: 2em;
+    color: #64ffda;
+    font-size: 1.2em;
+    background-color: transparent;
+    align-self: center;
+  }
+  
+  .form-field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 10px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+  
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: #ccd6f6;
+    padding-inline: 1em;
+  }
+  
+  .sendMessage-btn {
+    cursor: pointer;
+    margin-bottom: 3em;
+    padding: 1em;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: #64ffda;
+    font-weight: bold;
+    outline: 1px solid #64ffda;
+    transition: all ease-in-out 0.3s;
+  }
+  
+  .sendMessage-btn:hover {
+    transition: all ease-in-out 0.3s;
+    background-color: #64ffda;
+    color: #000;
+    cursor: pointer;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+  
+  .form-card1 {
+    background-image: linear-gradient(163deg, #64ffda 0%, #64ffda 100%);
+    border-radius: 22px;
+    transition: all 0.3s;
+    margin-bottom: 40px;
+    width: 80%;
+    margin-left: 120px;
+  }
+  
+  .form-card1:hover {
+    box-shadow: 0px 0px 30px 1px rgba(100, 255, 218, 0.3);
+  }
+  
+  .form-card2 {
+    border-radius: 0;
+    transition: all 0.2s;
+  }
+  
+  .form-card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+  }
+  
+  .contact .heading{
+          font-size: 60px;
+          margin-left: 500px;
+          padding-top: 80px;
+  }
